@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const card = document.createElement("div");
           card.classList.add("card");
           card.style.width = "20em";
-          card.style.height = "300px";
+          card.style.height = "42em";
 
           const img = document.createElement("img");
           img.classList.add("card-img-top");
