@@ -11,7 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const booksContainer = document.querySelector("#row-libri");
         booksContainer.innerHTML = "";
 
-        for (let book of data) {
+        for (let i = 0; i < data.length; i++) {
+          let book = data[i];
+
           const col = document.createElement("div");
           col.classList.add("col-md-4", "mb-4");
 
