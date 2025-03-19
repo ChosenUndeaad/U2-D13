@@ -17,7 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
           const card = document.createElement("div");
           card.classList.add("card");
-          card.style.width = "18rem";
+          card.style.width = "20em";
+          card.style.height = "300px";
 
           const img = document.createElement("img");
           img.classList.add("card-img-top");
@@ -26,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
           const cardBody = document.createElement("div");
           cardBody.classList.add("card-body");
+          cardBody.style.flex = "1";
 
           const title = document.createElement("h5");
           title.classList.add("card-title");
