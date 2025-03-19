@@ -1,55 +1,61 @@
-const getBooks = async () => {
-  try {
-    const response = await fetch(
-      "https://striveschool-api.herokuapp.com/books"
-    );
-    if (!response.ok) throw new Error("Server error");
+document.addEventListener("DOMContentLoaded", () => {
+  const getBooks = async () => {
+    try {
+      const response = await fetch(
+        "https://striveschool-api.herokuapp.com/books"
+      );
 
-    const data = await response.json();
-    const booksContainer = document.querySelector(".row");
-    booksContainer.innerHTML = "";
+      if (response.ok) {
+        const data = await response.json();
 
-    for (let book of data) {
-      const col = document.createElement("div");
-      col.classList.add("col-12", "col-md-6", "col-lg-4", "mb-4");
+        const booksContainer = document.querySelector("#row-libri");
+        booksContainer.innerHTML = "";
 
-      const card = document.createElement("div");
-      card.classList.add("card");
-      card.style.width = "20em";
+        for (let book of data) {
+          const col = document.createElement("div");
+          col.classList.add("col-md-4", "mb-4");
 
-      const img = document.createElement("img");
-      img.classList.add("card-img-top");
-      img.src = book.img;
-      img.alt = book.title;
+          const card = document.createElement("div");
+          card.classList.add("card");
+          card.style.width = "18rem";
 
-      const cardBody = document.createElement("div");
-      cardBody.classList.add("card-body");
+          const img = document.createElement("img");
+          img.classList.add("card-img-top");
+          img.src = book.img;
+          img.alt = book.title;
 
-      const title = document.createElement("h5");
-      title.classList.add("card-title");
-      title.innerText = book.title;
+          const cardBody = document.createElement("div");
+          cardBody.classList.add("card-body");
 
-      const price = document.createElement("p");
-      price.classList.add("card-text");
-      price.innerText = `Price: €${book.price}`;
+          const title = document.createElement("h5");
+          title.classList.add("card-title");
+          title.innerText = book.title;
 
-      const button = document.createElement("a");
-      button.classList.add("btn", "btn-primary");
-      button.href = "#";
-      button.innerText = "Buy Now";
+          const price = document.createElement("p");
+          price.classList.add("card-text");
+          price.innerText = `Price: €${book.price}`;
 
-      cardBody.appendChild(title);
-      cardBody.appendChild(price);
-      cardBody.appendChild(button);
-      card.appendChild(img);
-      card.appendChild(cardBody);
-      col.appendChild(card);
+          const button = document.createElement("a");
+          button.classList.add("btn", "btn-primary");
+          button.href = "#";
+          button.innerText = "Buy Now";
 
-      booksContainer.appendChild(col);
+          cardBody.appendChild(title);
+          cardBody.appendChild(price);
+          cardBody.appendChild(button);
+          card.appendChild(img);
+          card.appendChild(cardBody);
+          col.appendChild(card);
+
+          booksContainer.appendChild(col);
+        }
+      } else {
+        throw new Error("The server is not responding correctly");
+      }
+    } catch (error) {
+      console.error("Error:", error);
     }
-  } catch (error) {
-    console.error("Error:", error);
-  }
-};
+  };
 
-getBooks();
+  getBooks();
+});
